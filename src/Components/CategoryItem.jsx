@@ -4,13 +4,14 @@ import Card from './Card'
 
 const CategoryItem = ({
   item,
-  setCategorySelected
+  navigation
 }) => {
   return (
     <Pressable
-      onPress={()=>setCategorySelected(item)}>
+      onPress={() => navigation.navigate('ItemListCategory', { category: item })}
+    >
       <Card>
-          <Text style={styles.textCategory}>{item}</Text>
+        <Text style={styles.textCategory}>{item}</Text>
       </Card>
     </Pressable>
   )
@@ -19,8 +20,8 @@ const CategoryItem = ({
 export default CategoryItem;
 
 const styles = StyleSheet.create({
-    textCategory: {
-        fontSize: 20,
-        fontFamily: 'JosefinRegular',
-    }
+  textCategory: {
+    fontSize: 20,
+    fontFamily: 'JosefinRegular',
+  }
 })

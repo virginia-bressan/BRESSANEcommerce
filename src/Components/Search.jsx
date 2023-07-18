@@ -15,7 +15,7 @@ const Search = ({
     return (
         <View style={styles.container}>
             <TextInput style={styles.input}
-                placeholder='Search...'
+                placeholder='Buscar...'
                 value={keyword}
                 onChangeText={setKeyword}
             />
