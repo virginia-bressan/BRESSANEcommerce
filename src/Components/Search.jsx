@@ -1,9 +1,8 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions } from 'react-native'
 import React, { useState } from 'react'
-import { Feather } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { colors } from '../Global/Colors';
-import { FontAwesome } from '@expo/vector-icons';
 
 const Search = ({
     onSearch,
@@ -11,30 +10,34 @@ const Search = ({
     goBack
 }) => {
     const [keyword, setKeyword] = useState("")
+    const {width, height}  = useWindowDimensions()
 
-    return (
-        <View style={styles.container}>
-            <TextInput style={styles.input}
-                placeholder='Buscar...'
-                value={keyword}
-                onChangeText={setKeyword}
-            />
-            <Pressable onPress={() => onSearch(keyword)}>
-                <Feather name="search" size={24} color="black" />
-            </Pressable>
-            <Pressable onPress={() => setKeyword("")}>
-                <FontAwesome5 name="eraser" size={24} color="black" />
-            </Pressable>
-            <Pressable onPress={goBack}>
-                <FontAwesome name="backward" size={24} color="black" />
-            </Pressable>
-            {error ?
-                <Text>
-                    {error}
-                </Text>
-                : null}
-        </View>
-    )
+    const onErase = () => {
+        setKeyword("")
+        onSearch("")
+    }
+
+  return (
+    <View style ={width > 350 ? styles.container : styles.containerSm}>
+        <TextInput style ={styles.input} 
+            placeholder='Buscar...'
+            value={keyword}
+            onChangeText={setKeyword}
+        />
+        <Pressable onPress={()=>onSearch(keyword)}>
+            <FontAwesome name="search" size={24} color="black" />
+        </Pressable>
+        <Pressable onPress={onErase}>
+            <FontAwesome5 name="eraser" size={24} color="black" />
+        </Pressable>
+        
+       { error ?
+         <Text>
+            {error}
+        </Text>
+        : null}
+    </View>
+  )
 }
 
 export default Search
@@ -51,7 +54,13 @@ const styles = StyleSheet.create({
         width: 250,
         padding: 8,
         fontSize: 18,
+        borderRadius: 9,
         backgroundColor: colors.earth,
-        borderRadius: 10,
-    }
+    },
+    containerSm: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '10%',
+    },
 })

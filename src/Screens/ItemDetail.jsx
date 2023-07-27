@@ -27,7 +27,6 @@ const ItemDetail = ({
 
     return (
         <View>
-            <Button onPress={() => navigation.goBack()} title="Atras" />
             {product ? (
                 <View
                     style={
@@ -58,23 +57,27 @@ export default ItemDetail;
 
 const styles = StyleSheet.create({
     mainContainer: {
+        alignItems: "center",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "flex-start",
-        padding: 10,
+        padding: 9,
+    },
+    textContainer: {
+        fontSize: 22,
     },
     mainContainerLandscape: {
       flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "flex-start",
       padding: 10,
+      justifyContent: "center",
+      alignItems: "flex-start",  
   },
     image: {
-        width: 290,
-        height: 240,
+        width: 295,
+        height: 245,
         borderRadius: 3,
     },
     textContainer: {
-      flexDirection: 'column'
+      flexDirection: 'column',
+      padding: 8,
     }
 });
