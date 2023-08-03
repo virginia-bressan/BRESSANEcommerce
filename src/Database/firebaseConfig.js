@@ -1,0 +1,1 @@
+export const realtime_database_url = "https://ecommerce-f9f95-default-rtdb.firebaseio.com/"

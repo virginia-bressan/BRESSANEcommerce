@@ -1,12 +1,19 @@
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import CartData from '../Data/cart.json'
 import CartItem from '../Components/CartItem';
+import { useSelector } from 'react-redux';
+import { usePostCartMutation } from '../Services/shopServices';
 
 const Cart = () => {
-    console.log(CartData);
-    const total = CartData.reduce((acumulador, currentItem) => acumulador += currentItem.price * currentItem.quantity, 0)
-    
+    const {items: CartData, total, updatedAt, user} = useSelector(state => state.cartReducer.value)
+    const [triggerPostCart, result] = usePostCartMutation()
+
+    const onConfirm = () => {
+        triggerPostCart({items: CartData, total, user, updatedAt})
+    }
+
+    console.log(result);
+
     return (
     <View style={styles.container}>
         <FlatList
@@ -21,7 +28,9 @@ const Cart = () => {
             }}
         />
         <View style={styles.totalContainer}>
-            <Pressable>
+            <Pressable
+                onPress = {onConfirm}
+            >
                 <Text>
                     Confirm
                 </Text>
@@ -38,11 +47,12 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'space-between',
         flex: 1,
-        marginBottom: 120,
+        marginBottom: 100,
     },
     totalContainer: {
         flexDirection: 'row',
-        justifyContent: 'center',
         alignItems: 'center',
+        paddingBottom: 22,
+        justifyContent: 'space-around',
     }
 })
