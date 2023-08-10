@@ -29,7 +29,6 @@ const Home = ({
 
 export default Home
 
-
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.grey,
