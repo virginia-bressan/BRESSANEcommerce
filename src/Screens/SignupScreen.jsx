@@ -19,7 +19,6 @@ const SignupScreen = ({ navigation }) => {
     const [triggerSignUp, result] = useSignUpMutation()
     const dispatch = useDispatch()
 
-    console.log(result);
 
     useEffect(()=> {
         if (result.isSuccess) {

@@ -20,8 +20,6 @@ const LocationSelector = ({ navigation }) => {
     const {localId} = useSelector(state => state.userReducer.value)
     const dispatch = useDispatch()
 
-    console.log(location);
-
     const onConfirmAddress = () => {
 
         const locationFormatted = {
@@ -58,7 +56,6 @@ const LocationSelector = ({ navigation }) => {
                 });
                 
             } catch (error) {
-                console.log(error.message);
                 setError(error.message)
             }
         })()

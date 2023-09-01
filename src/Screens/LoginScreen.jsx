@@ -7,6 +7,7 @@ import { useSignInMutation } from "../Services/authServices";
 import { isAtLeastSixCharacters, isValidEmail } from "../Validations/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../Features/User/userSlice";
+import { insertSession } from "../SQLite";
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -19,6 +20,7 @@ const LoginScreen = ({ navigation }) => {
 
     const [triggerSignIn, resultSignIn] = useSignInMutation();
     const onSubmit = () => {
+
         const isValidVariableEmail = isValidEmail(email)
         const isCorrectPassword = isAtLeastSixCharacters(password)
 
@@ -36,14 +38,30 @@ const LoginScreen = ({ navigation }) => {
         else setErrorPassword('')
     };
 
-    console.log(resultSignIn);
     useEffect(()=> {
-        if(resultSignIn.isSuccess) {
-            dispatch(setUser({
-                email: resultSignIn.data.email,
-                idToken: resultSignIn.data.idToken
-            }))
-        }
+        (async ()=> {
+            try {
+                if(resultSignIn.isSuccess) {
+                    const response = await insertSession({
+                        idToken: resultSignIn.data.idToken,
+                        localId: resultSignIn.data.localId,
+                        email: resultSignIn.data.email,
+                    })
+
+                    dispatch(setUser({
+                        email: resultSignIn.data.email,
+                        idToken: resultSignIn.data.idToken,
+                        localId: resultSignIn.data.localId,
+                        profileImage: "",
+                        location: {
+                            latitude: "",
+                            longitude: "",
+                        }
+                    }))
+                }
+            } catch (error) {
+            }
+        })()
     }, [resultSignIn])
 
     return (

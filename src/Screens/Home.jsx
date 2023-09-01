@@ -9,10 +9,6 @@ const Home = ({
   navigation
 }) => {
   const {data: categories, isLoading, isError} = useGetCategoriesQuery()
-
-  console.log(isLoading)
-  console.log(isError);
-  console.log(categories);
   
   return (
     <View style={styles.container}>
