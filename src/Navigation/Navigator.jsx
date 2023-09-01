@@ -18,8 +18,6 @@ const Navigator = () => {
     const { email } = useSelector((state) => state.userReducer.value);
     
     const dispatch = useDispatch()
-
-    //Get stored sessions
     useEffect(()=> {
         (async ()=> {
             try {

@@ -5,7 +5,6 @@ import {
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-
 import ShopStack from "./ShopStack";
 import CartStack from "./CartStack";
 

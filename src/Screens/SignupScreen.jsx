@@ -77,7 +77,7 @@ const SignupScreen = ({ navigation }) => {
                     isSecure={true}
                 />
                 <SubmitButton onPress={onSubmit} title="Send" />
-                <Text style={styles.sub}>Already have an account?</Text>
+                <Text style={styles.sub}>¿YA TIENES UNA CUENTA?</Text>
                 <Pressable onPress={() => navigation.navigate("Login")}>
                     <Text style={styles.subLink}>Login</Text>
                 </Pressable>
@@ -102,22 +102,22 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: colors.pastel,
-        gap: 15,
-        paddingVertical: 20,
-        borderRadius: 10,
+        gap: 16,
+        paddingVertical: 22,
+        borderRadius: 12,
     },
     title: {
-        fontSize: 22,
+        fontSize: 23,
         fontFamily: "Josefin",
     },
     sub: {
-        fontSize: 14,
+        fontSize: 15,
         fontFamily: "Josefin",
         color: "black",
     },
     subLink: {
-        fontSize: 14,
+        fontSize: 12,
         fontFamily: "Josefin",
-        color: "blue",
+        color: "darkblue",
     },
 });
