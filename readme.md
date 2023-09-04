@@ -26,3 +26,5 @@ Este proyecto es una tienda online de gran variedad de productos, desarrollada c
 - Agregar una foto de perfil del usuario.
 - Ver carrito de productos.
 
+#### Publicacion
+-https://ecommercevirginia.netlify.app/
